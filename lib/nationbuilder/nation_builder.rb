@@ -1,6 +1,7 @@
 require 'oauth2'
 
 module NationBuilder
+	class NotConfigured < Exception; end 
 	class << self
 		attr_reader :access_token, :client, :api
 
