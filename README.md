@@ -24,8 +24,17 @@ NationBuilder::People.match :email => 'jon.doe@example.com'
 
 NationBuilder::People.create :first_name => "Jane", :last_name => "Doe", :email => "jane.doe@example.com"
 
-
+# => #<NationBuilder::People:0x007fda192be968>
 ```
+
+TODO:
+* Add Campaign Data
+* Add Sites
+* Add Basic Pages
+* Add Blogs
+* Add Blog Posts
+* Surveys 
+
 ## Contributing to nationbuilder
  
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet.
