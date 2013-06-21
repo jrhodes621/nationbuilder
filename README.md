@@ -5,12 +5,13 @@ Work in progress gem for NationBuilder
 ## Usage
 First Get an access token and configure the gem to your nation
 ```
-require './lib/nationbuilder'
+require 'nationbuilder'
 NationBuilder.configure(
 	:nation_name => "actionsprout", 
 	:client_id => "YOUR_CLIENT_ID",
 	:client_secret => "YOUR_CLIENT_SECRET",
-	:access_token => "USERS_ACCESS_TOKEN"
+	:access_token => "USERS_ACCESS_TOKEN",
+	:redirect_uri => "http://www.example.com/callback"
 )
 ```
 Then you can grab the resources you need:
