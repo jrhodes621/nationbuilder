@@ -5,7 +5,7 @@ require_relative "nationbuilder/resources/people"
 module NationBuilder
 	class NotConfigured < Exception; end 
 	class << self
-		attr_reader :access_token, :client, :api, :nation_name
+		attr_reader :access_token, :client, :api, :nation_name, :redirect_uri
 
 		def configure(opts={})
 			@opts = opts
@@ -13,6 +13,7 @@ module NationBuilder
 			@client_id ||= opts[:client_id]
 			@client_secret ||= opts[:client_secret]
 			@nation_name ||= opts[:nation_name]
+			@redirect_uri ||= opts[:redirect_uri]
 
 			@client = OAuth2::Client.new(@client_id, @client_secret,
 		      :site => "https://#{@nation_name}.nationbuilder.com"
@@ -36,7 +37,7 @@ module NationBuilder
 		def authorize_url
 			raise NotConfigured unless @client
 			
-			@client.auth_code.authorize_url(:redirect_uri => @opts[:redirect_uri])
+			@client.auth_code.authorize_url :redirect_uri => @redirect_uri 
 		end
 
 		def people
@@ -46,7 +47,7 @@ module NationBuilder
 		def get_token_from_code!(code)
 			raise NotConfigured unless @client
 
-			@api = @client.auth_code.get_token(code, :redirect_uri => @opts[:redirect_uri])
+			@api = @client.auth_code.get_token code, :redirect_uri => @redirect_uri
 			@access_token = @api.token
 
 			return @access_token
