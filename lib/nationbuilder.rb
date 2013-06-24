@@ -47,10 +47,7 @@ module NationBuilder
 		def get_token_from_code!(code)
 			raise NotConfigured unless @client
 
-			@api = @client.auth_code.get_token code, :redirect_uri => @redirect_uri
-			@access_token = @api.token
-
-			return @access_token
+			@client.auth_code.get_token code, :redirect_uri => @redirect_uri
 		end
 	end
 end
