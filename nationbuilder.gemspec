@@ -26,7 +26,6 @@ Gem::Specification.new do |s|
     "Rakefile",
     "VERSION",
     "lib/nationbuilder.rb",
-    "lib/nationbuilder/nation_builder.rb",
     "lib/nationbuilder/resources/people.rb",
     "lib/nationbuilder/resources/resources.rb",
     "spec/nationbuilder_spec.rb",
