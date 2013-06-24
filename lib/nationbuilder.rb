@@ -39,7 +39,11 @@ module NationBuilder
 			@client.auth_code.authorize_url(:redirect_uri => @opts[:redirect_uri])
 		end
 
-		def set_token_from_code!(code)
+		def people
+			People
+		end
+
+		def get_token_from_code!(code)
 			raise NotConfigured unless @client
 
 			@api = @client.auth_code.get_token(code, :redirect_uri => @opts[:redirect_uri])
