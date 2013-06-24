@@ -13,14 +13,13 @@ module NationBuilder
 			@client_secret ||= opts[:client_secret]
 			@nation_name ||= opts[:nation_name]
 			@redirect_uri ||= opts[:redirect_uri]
-			@refresh_opts ||= {refresh_token: opts.delete(:refresh_token), expires_in: opts.delete(:expires_in), expires_at: opts.delete(:expires_at)}
 			@opts = opts
 			
 			@client = OAuth2::Client.new(@client_id, @client_secret,
 		      :site => "https://#{@nation_name}.nationbuilder.com"
 		    )
 			
-			@api = OAuth2::AccessToken.new @client, @access_token, @refresh_opts
+			@api = OAuth2::AccessToken.new @client, @access_token, @opts
 		end
 
 		def access_token=(token)
