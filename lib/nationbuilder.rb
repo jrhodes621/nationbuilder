@@ -5,16 +5,32 @@ require_relative "nationbuilder/resources/people"
 module NationBuilder
 	class NotConfigured < Exception; end 
 	class << self
-		attr_reader :access_token, :client, :api
+		attr_reader :access_token, :client, :api, :nation_name
 
 		def configure(opts={})
 			@opts = opts
-			@access_token = opts[:access_token]
-			@client = OAuth2::Client.new(opts[:client_id], opts[:client_secret],
-		      :site => "https://#{opts[:nation_name]}.nationbuilder.com"
+			@access_token ||= opts[:access_token]
+			@client_id ||= opts[:client_id]
+			@client_secret ||= opts[:client_secret]
+			@nation_name ||= opts[:nation_name]
+
+			@client = OAuth2::Client.new(@client_id, @client_secret,
+		      :site => "https://#{@nation_name}.nationbuilder.com"
 		    )
 			
 			@api = OAuth2::AccessToken.new @client, @access_token
+		end
+
+		def access_token=(token)
+			@access_token = token
+
+			configure
+		end
+
+		def nation_name=(nation)
+			@nation_name = nation
+
+			configure
 		end
 
 		def authorize_url
