@@ -10,11 +10,11 @@ module NationBuilder
 			self.class.update(@id, person)
 		end
 
-		def destroy
+		def destroy!
 			self.class.destroy(@id)
 		end
 
-		def register
+		def register!
 			self.class.get_resource("people/#{@id}/register")['status'] == 'success'
 		end
 

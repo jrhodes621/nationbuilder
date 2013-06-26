@@ -8,7 +8,7 @@ module NationBuilder
 		attr_reader :access_token, :client, :api, :nation_name, :redirect_uri, :opts
 
 		def configure(opts={})
-			@access_token ||= opts[:access_token]
+			@access_token = opts[:access_token] if opts[:access_token]
 			@client_id ||= opts[:client_id]
 			@client_secret ||= opts[:client_secret]
 			@nation_name ||= opts[:nation_name]
