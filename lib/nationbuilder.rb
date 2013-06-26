@@ -5,7 +5,7 @@ require_relative "nationbuilder/resources/people"
 module NationBuilder
 	class NotConfigured < Exception; end 
 	class << self
-		attr_reader :access_token, :client, :api, :nation_name, :redirect_uri, :refresh_opts, :opts
+		attr_reader :access_token, :client, :api, :nation_name, :redirect_uri, :opts
 
 		def configure(opts={})
 			@access_token ||= opts[:access_token]

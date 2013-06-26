@@ -1,6 +1,6 @@
 module NationBuilder
 	class People < NationBuilder::Resources
-		attr_accessor :id, :first_name, :last_name, :email, :phone, :mobile, :home_address, :tags
+		attr_accessor :id, :first_name, :last_name, :email, :phone, :mobile, :home_address, :tags, :sex
 		
 		def initialize(person)
 			person.each { |k,v| instance_variable_set("@#{k}", v) }
