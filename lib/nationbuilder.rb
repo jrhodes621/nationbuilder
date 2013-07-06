@@ -10,8 +10,8 @@ module NationBuilder
 		def configure(opts={})
 			@access_token = opts[:access_token]
 			@nation_name = opts[:nation_name]
-			@redirect_uri = opts[:redirect_uri]
-
+			
+			@redirect_uri ||= opts[:redirect_uri]
 			@client_id ||= opts[:client_id]
 			@client_secret ||= opts[:client_secret]
 			@opts = opts
