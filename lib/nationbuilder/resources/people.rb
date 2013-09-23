@@ -7,11 +7,19 @@ module NationBuilder
 		end
 
 		def update!(person={})
-			self.class.update(@id, person)
+			tags = person.delete(:tags)
+			self.class.update(@id, person) unless person.empty?
+			add_tags!(tags) if tags and !tags.empty?
 		end
 
 		def destroy!
 			self.class.destroy(@id)
+		end
+
+		def add_tags!(tags_arr)
+			tags_arr.each do |tag|
+				self.class.update_resource("people/#{@id}/taggings", :tagging => {:tag => tag})	
+			end
 		end
 
 		def register!
