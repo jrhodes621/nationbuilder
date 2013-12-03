@@ -17,7 +17,9 @@ module NationBuilder
 			@opts = opts
 			
 			@client = OAuth2::Client.new(@client_id, @client_secret,
-		      :site => "https://#{@nation_name}.nationbuilder.com"
+		      :site => "https://#{@nation_name}.nationbuilder.com",
+		      :ssl => { :verify => OpenSSL::SSL::VERIFY_PEER, 
+		      :ca_file => '/usr/lib/ssl/certs/ca-certificates.crt'
 		    )
 			
 			@api = OAuth2::AccessToken.new @client, @access_token, @opts
